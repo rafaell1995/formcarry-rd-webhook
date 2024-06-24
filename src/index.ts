@@ -43,6 +43,9 @@ app.post('/api/webhook', async (c: any) => {
 });
 
 function transformData(formcarryData: any) {
+	// Add to console formcarryData
+	console.warn(formcarryData);
+	
 	// Transforme os dados do Formcarry para o formato esperado pelo RD Station
 	const payload: any = {
 	  conversion_identifier: formcarryData.fields.conversion_identifier // Identificador de conversão no RD Station

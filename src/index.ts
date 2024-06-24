@@ -19,13 +19,11 @@ app.post('/api/webhook', async (c: any) => {
     const rdStationData = transformData(formcarryData);
     console.log('Transformed data for RD Station:', rdStationData);
 
-	return c.text("TODO finalize implements");
-
-    const response: any = await fetch(rdStationApiUrl, {
+    const response: any = await fetch(`${rdStationApiUrl}?api_key=${rdStationToken}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${rdStationToken}`
+        accept: 'application/json',
       },
       body: JSON.stringify(rdStationData)
     });

@@ -47,11 +47,15 @@ function transformData(formcarryData: any) {
 	const payload: any = {
 	  conversion_identifier: formcarryData.fields.conversion_identifier // Identificador de conversão no RD Station
 	};
-  
-	// Iterate over each field and add to payload
-	formcarryData.fields.forEach((field: { key: string, value: any }) => {
-	  payload[field.key] = field.value;
-	});
+
+	// Check if fields exist and iterate over them
+	if (formcarryData.fields && Array.isArray(formcarryData.fields)) {
+		formcarryData.fields.forEach((field: { key: string, value: any }) => {
+			payload[field.key] = field.value;
+		});
+	} else {
+		console.warn('No fields found in formcarryData');
+	}
   
 	const transformedData = {
 	  event_type: 'CONVERSION', // Por exemplo, tipo de evento
@@ -61,6 +65,6 @@ function transformData(formcarryData: any) {
   
 	console.log('Transformed data:', transformedData);
 	return transformedData;
-  }
+}
 
 export default app;

@@ -48,7 +48,7 @@ function transformData(formcarryData: any) {
 
 	// Transforme os dados do Formcarry para o formato esperado pelo RD Station
 	const payload: any = {
-	  conversion_identifier: formcarryData.fields.conversion_identifier // Identificador de conversão no RD Station
+	  conversion_identifier: formcarryData.fields["conversion_identifier"] // Identificador de conversão no RD Station
 	};
 
 	// Check if fields exist and iterate over them

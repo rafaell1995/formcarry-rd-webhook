@@ -49,7 +49,9 @@ function transformData(formcarryData: any) {
 	console.log("console formcarryData", formcarryData);
 
 	// Transforme os dados do Formcarry para o formato esperado pelo RD Station
-	const payload: any = {};
+	const payload: any = {
+		source: 'formcarry'
+	};
 
 	// Check if fields exist and iterate over them
 	if (formcarryData.fields && Array.isArray(formcarryData.fields)) {

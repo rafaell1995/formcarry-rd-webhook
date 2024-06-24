@@ -57,6 +57,11 @@ function transformData(formcarryData: any) {
 		console.warn('No fields found in formcarryData');
 	}
   
+	// Check if this sender is spam
+	if (formcarryData.spam) {
+		console.warn('This is email sender spam');
+	}
+  
 	const transformedData = {
 	  event_type: 'CONVERSION', // Por exemplo, tipo de evento
 	  event_family: 'CDP', // Família de eventos

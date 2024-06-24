@@ -6,6 +6,10 @@ app.post('/api/webhook', async (c: any) => {
   const rdStationToken = c.env.RS_STATION_TOKEN ?? '';
   const rdStationApiUrl = c.env.RD_STATION_API_URL ?? '';
 
+  // Check received env vars
+  console.log("RS_STATION_TOKEN: ", rdStationToken);
+  console.log("RD_STATION_API_URL: ", rdStationApiUrl);
+
   try {
     console.log('Request received');
 

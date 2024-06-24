@@ -3,11 +3,11 @@ import { Hono } from 'hono'
 const app = new Hono()
 
 app.post('/api/webhook', async (c: any) => {
-  const rdStationToken = c.env.RD_STATION_TOKEN ?? '';
+  const rdStationApiKey = c.env.RD_STATION_API_KEY ?? '';
   const rdStationApiUrl = c.env.RD_STATION_API_URL ?? '';
 
   // Check received env vars
-  console.log("RD_STATION_TOKEN: ", rdStationToken);
+  console.log("RD_STATION_API_KEY: ", rdStationApiKey);
   console.log("RD_STATION_API_URL: ", rdStationApiUrl);
 
   try {
@@ -19,7 +19,7 @@ app.post('/api/webhook', async (c: any) => {
     const rdStationData = transformData(formcarryData);
     console.log('Transformed data for RD Station:', rdStationData);
 
-    const response: any = await fetch(`${rdStationApiUrl}?api_key=${rdStationToken}`, {
+    const response: any = await fetch(`${rdStationApiUrl}?api_key=${rdStationApiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -8,5 +8,5 @@ workers_dev = true
 [build]
 command = "npm run build"
 
-[env.production]
+[vars]
 RD_STATION_API_URL = "https://api.rd.services/platform/conversions"

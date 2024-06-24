@@ -1,0 +1,10 @@
+name = "formcarry-rd-webhook"
+type = "typescript"
+main = "./dist/index.js"
+compatibility_date = "2024-06-10"
+account_id = "eed1dcb5bc6b2cd005ee559705499c8e"
+workers_dev = true
+
+[env.production]
+route = "your-production-route"
+zone_id = "your-zone-id"

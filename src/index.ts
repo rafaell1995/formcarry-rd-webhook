@@ -2,9 +2,9 @@ import { Hono } from 'hono'
 
 const app = new Hono()
 
-app.post('/api/webhook', async (c) => {
-  const rdStationToken = 'your-rd-station-token'; // Substitua com seu token RD Station
-  const rdStationApiUrl = 'https://api.rd.services/platform/conversions';
+app.post('/api/webhook', async (c: any) => {
+  const rdStationToken = c.env.RS_STATION_TOKEN ?? '';
+  const rdStationApiUrl = c.env.RD_STATION_API_URL ?? '';
 
   try {
     console.log('Request received');
@@ -43,20 +43,24 @@ app.post('/api/webhook', async (c) => {
 });
 
 function transformData(formcarryData: any) {
-  // Transforme os dados do Formcarry para o formato esperado pelo RD Station
-  const transformedData = {
-    event_type: 'CONVERSION', // Por exemplo, tipo de evento
-    event_family: 'CDP', // Família de eventos
-    payload: {
-      conversion_identifier: 'lead-form', // Identificador de conversão no RD Station
-      name: formcarryData.name, // Assumindo que Formcarry envia um campo "name"
-      email: formcarryData.email, // Assumindo que Formcarry envia um campo "email"
-      // Adicione outros campos conforme necessário
-    }
-  };
-
-  console.log('Transformed data:', transformedData);
-  return transformedData;
-}
+	// Transforme os dados do Formcarry para o formato esperado pelo RD Station
+	const payload: any = {
+	  conversion_identifier: 'lead-form' // Identificador de conversão no RD Station
+	};
+  
+	// Iterate over each field and add to payload
+	formcarryData.fields.forEach((field: { key: string, value: any }) => {
+	  payload[field.key] = field.value;
+	});
+  
+	const transformedData = {
+	  event_type: 'CONVERSION', // Por exemplo, tipo de evento
+	  event_family: 'CDP', // Família de eventos
+	  payload
+	};
+  
+	console.log('Transformed data:', transformedData);
+	return transformedData;
+  }
 
 export default app;

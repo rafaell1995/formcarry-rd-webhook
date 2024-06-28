@@ -61,6 +61,7 @@ function transformData(formcarryData: any) {
 	// Check if this sender is spam
 	if (formcarryData.spam) {
 		console.warn('This is email sender spam');
+    throw new Error('Detected spam submission');
 	}
   
 	const transformedData = {

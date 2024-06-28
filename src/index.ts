@@ -56,6 +56,7 @@ function transformData(formcarryData: any) {
 		});
 	} else {
 		console.warn('No fields found in formcarryData');
+    throw new Error('Invalid formcarryData format');
 	}
   
 	// Check if this sender is spam

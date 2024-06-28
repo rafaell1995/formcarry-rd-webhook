@@ -65,8 +65,8 @@ function transformData(formcarryData: any) {
 	}
   
 	const transformedData = {
-	  event_type: 'CONVERSION', // Por exemplo, tipo de evento
-	  event_family: 'CDP', // Família de eventos
+	  event_type: 'CONVERSION',
+	  event_family: 'CDP',
 	  payload
 	};
   
